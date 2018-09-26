@@ -28,3 +28,6 @@
 
 # Ignore public directory since I'm gonna build it on deploy
 /public
+
+# Ignore application configuration
+/config/application.yml
