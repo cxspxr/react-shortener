@@ -32,5 +32,6 @@ module ReactRails
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
     config.generators.test_framework :rspec
+    config.middleware.use Rack::Attack
   end
 end
