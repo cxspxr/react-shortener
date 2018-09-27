@@ -5,8 +5,7 @@ class Link extends Component
   render: ->
     <div>
       <div>
-        {@props.link.url}
-        {@props.link.hash}
+        {@props.link.url} ({@props.link.hash})
       </div>
     </div>
 
