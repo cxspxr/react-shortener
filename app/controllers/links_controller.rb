@@ -6,7 +6,15 @@ class LinksController < ApplicationController
 
   def store
     @link = Link.create!(link_params)
-    json_response(@link, :created)
+
+    if @link.valid?
+      json_response(@link, :created)
+    end
+  end
+
+  def get
+    @link = Link.where(url: link_params[:url])
+    json_response(@link)
   end
 
   def count
