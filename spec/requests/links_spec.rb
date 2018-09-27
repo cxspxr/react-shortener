@@ -44,7 +44,7 @@ RSpec.describe 'Links API', type: :request do
       end
     end
 
-    context 'when the request is invalid' do
+    context 'when there is only url' do
       before { post links_store_path, params: { url: valid_attributes[:url] } }
 
       it 'returns status code 422' do
@@ -54,6 +54,63 @@ RSpec.describe 'Links API', type: :request do
       it 'returns a validation failure message' do
         expect(response.body)
           .to match(/Validation failed: Shortened can't be blank/)
+      end
+    end
+
+    context 'when there is only shortened' do
+      before { post links_store_path, params: { shortened: valid_attributes[:shortened] } }
+
+      it 'returns status code 422' do
+        expect(response).to have_http_status(422)
+      end
+
+      it 'returns a validation failure message' do
+        expect(response.body)
+          .to match(/Validation failed: Url can't be blank/)
+      end
+    end
+
+    context 'when there is the same url' do
+      same_url = 'git.io'
+
+      before { post links_store_path, params: {
+        url: same_url,
+        shortened: Faker::Name.unique.name
+      } }
+      before { post links_store_path, params: {
+        url: same_url,
+        shortened: Faker::Name.unique.name
+      } }
+
+      it 'returns status code 422' do
+        expect(response).to have_http_status(422)
+      end
+
+      it 'returns a validation failure message' do
+        expect(response.body)
+          .to match(/Validation failed: Url has already been taken/)
+      end
+    end
+
+    context 'when there is the same shortened' do
+      same_shortened = '1'
+
+      before { post links_store_path, params: {
+        url: Faker::Internet.unique.url,
+        shortened: same_shortened
+      } }
+      before { post links_store_path, params: {
+        url: Faker::Internet.unique.url,
+        shortened: same_shortened
+      } }
+
+      it 'returns status code 422' do
+        expect(response).to have_http_status(422)
+      end
+
+      it 'returns a validation failure message' do
+        expect(response.body)
+          .to match(/Validation failed: Shortened has already been taken/)
       end
     end
   end
