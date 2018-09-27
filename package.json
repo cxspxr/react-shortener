@@ -10,12 +10,11 @@
     "deploy": "cp -a client/dist/ public/",
     "heroku-postbuild": "npm run build && npm run deploy",
     "post-husky": "cat ../.branch-ignore > ../.git/hooks/post-checkout",
-    "test-frontend": "if $(find client/package.json); then npm --prefix client run test-once; fi"
+    "test-frontend": "if [ -f ./client/package.json ]; then npm --prefix client run test-once; fi"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run test-frontend",
-      "pre-push": "npm run test-frontend && bundle exec rspec"
+      "pre-commit": "npm run test-frontend && bundle exec rspec"
     }
   }
 }
