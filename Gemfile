@@ -12,7 +12,6 @@ gem 'puma', '~> 3.11'
 
 # seeding
 gem 'faker'
-gem 'populator'
 
 # Use Figaro to manage ENV
 gem 'figaro'

@@ -2,7 +2,7 @@ class CreateLinks < ActiveRecord::Migration[5.2]
   def change
     create_table :links do |t|
       t.string :url
-      t.string :hash
+      t.string :shortened
 
       t.timestamps
     end
