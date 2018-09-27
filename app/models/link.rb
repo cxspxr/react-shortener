@@ -1,3 +1,4 @@
 class Link < ApplicationRecord
-  validates_presence_of :url, :shortened
+  validates :url, presence: true, uniqueness: { case_sensitive: false }
+  validates :shortened, presence: true, uniqueness: { case_sensitive: false }
 end
