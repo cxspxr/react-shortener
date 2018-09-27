@@ -33,9 +33,15 @@ class Shortener extends Component
       url: ''
 
   createShortLink: () ->
-    hash = createHash
-    axios.post URL + 'links/store'
+    count = 0
+    axios.get URL + 'links/count'
+      .then (res) =>
+        count = +res.data
 
+    hash = createHash count
+    axios.post URL + 'links/store',
+      url: @state.url
+      shortened: hash
 
   render: ->
     <div>
