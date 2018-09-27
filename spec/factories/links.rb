@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :link do
-    url { Faker::Internet.url }
-    shortened { Faker::FamilyGuy.character }
+    url { Faker::Internet.unique.url }
+    shortened { Faker::Name.unique.name }
   end
 end
