@@ -32,6 +32,8 @@ rescue ActiveRecord::PendingMigrationError => e
   exit 1
 end
 
+Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+
 # Configure shoulda
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
@@ -41,6 +43,7 @@ Shoulda::Matchers.configure do |config|
 end
 
 RSpec.configure do |config|
+  config.include RequestSpecHelper, type: :request
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
@@ -74,7 +77,7 @@ RSpec.configure do |config|
     DatabaseCleaner.clean_with(:truncation)
     DatabaseCleaner.strategy = :transaction
   end
-  
+
   config.around(:each) do |example|
     DatabaseCleaner.cleaning do
       example.run
