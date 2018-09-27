@@ -42,7 +42,7 @@
     "babel-core": "6.x || ^7.0.0-bridge.0"
   },
   "devDependencies": {
-    "husky": "^1.0.0",
+    "husky": "^1.0.1",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^23.6.0",
     "webpack-dev-server": "^3.1.9"
