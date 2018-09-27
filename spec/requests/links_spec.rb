@@ -71,14 +71,12 @@ RSpec.describe 'Links API', type: :request do
     end
 
     context 'when there is the same url' do
-      same_url = 'git.io'
-
       before { post links_store_path, params: {
-        url: same_url,
+        url: valid_attributes[:url],
         shortened: Faker::Name.unique.name
       } }
       before { post links_store_path, params: {
-        url: same_url,
+        url: valid_attributes[:url],
         shortened: Faker::Name.unique.name
       } }
 
@@ -93,15 +91,13 @@ RSpec.describe 'Links API', type: :request do
     end
 
     context 'when there is the same shortened' do
-      same_shortened = '1'
-
       before { post links_store_path, params: {
         url: Faker::Internet.unique.url,
-        shortened: same_shortened
+        shortened: valid_attributes[:shortened]
       } }
       before { post links_store_path, params: {
         url: Faker::Internet.unique.url,
-        shortened: same_shortened
+        shortened: valid_attributes[:shortened]
       } }
 
       it 'returns status code 422' do
