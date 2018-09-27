@@ -9,7 +9,7 @@ exports.process = (source, file) => {
   }
   return compile(source, {
     transpile: {
-      plugins: ['transform-es2015-modules-commonjs'],
+      plugins: ['@babel/plugin-transform-modules-commonjs'],
       presets: ['@babel/env', '@babel/react']
     },
     bare: true,
