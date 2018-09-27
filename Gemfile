@@ -13,6 +13,10 @@ gem 'puma', '~> 3.11'
 # model serializer
 gem 'active_model_serializers', '~> 0.10.0'
 
+# caching
+gem 'dalli'
+gem 'memcachier'
+
 # seeding
 gem 'faker'
 
