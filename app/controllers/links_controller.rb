@@ -3,4 +3,18 @@ class LinksController < ApplicationController
     @links = Link.all
     json_response(@links)
   end
+
+  def store
+    @link = Link.create!(link_params)
+    json_response(@link, :created)
+  end
+
+  def count
+    @count = Link.count
+    json_response(@count)
+  end
+
+  def link_params
+    params.permit(:url, :shortened)
+  end
 end
