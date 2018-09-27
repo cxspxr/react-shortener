@@ -10,8 +10,6 @@ gem 'mysql2', '>= 0.4.4', '< 0.6.0'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 
-# model serializer
-gem 'active_model_serializers', '~> 0.10.0'
 
 # caching
 gem 'dalli'

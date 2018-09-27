@@ -10,7 +10,7 @@ exports.process = (source, file) => {
   return compile(source, {
     transpile: {
       plugins: ['transform-es2015-modules-commonjs'],
-      presets: ['@babel/env', '@babel/react', 'jest']
+      presets: ['@babel/env', '@babel/react']
     },
     bare: true,
     inlineMap: true
