@@ -16,5 +16,8 @@
     "hooks": {
       "pre-commit": "npm run test-frontend && bundle exec rspec"
     }
+  },
+  "devDependencies": {
+    "husky": "^1.0.1"
   }
 }
