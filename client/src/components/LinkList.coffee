@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Link from './Link'
 
 import axios from 'axios'
-import URL from '../utils/url'
+import URL from '../utils/url/url'
 
 class LinkList extends Component
   constructor: (props) ->
