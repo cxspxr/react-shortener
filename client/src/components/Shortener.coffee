@@ -31,16 +31,38 @@ class Shortener extends Component
     super(props)
     @state =
       url: ''
+      shortened: ''
 
   createShortLink: () ->
-    axios.get URL + 'links/count'
-    .then (res) =>
-      count = +res.data
 
-      hash = createHash count
-      axios.post URL + 'links/store',
-        url: @state.url
-        shortened: hash
+    # fetch existing link
+    axios.post URL + 'links/get',
+      url: @state.url
+    .then (res) =>
+      existing = res.data
+      console.log existing
+
+      # if it's present - return shortened
+      if existing
+        @setState
+          shortened: existing
+        return
+
+      # otherwise make hash
+      axios.get URL + 'links/count'
+      .then (res) =>
+        count = +res.data
+
+        hash = createHash count
+        # and store link
+        axios.post URL + 'links/store',
+          url: @state.url
+          shortened: hash
+
+        # set shortened to hash
+        @setState
+          shortened: hash
+
 
   render: ->
     <div>
@@ -48,10 +70,11 @@ class Shortener extends Component
         id="url"
         value={@state.url}
         placeholder="Link URL"
-        onChange={(e) => this.setState({ url: e.target.value })}
+        onChange={(e) => @setState({ url: e.target.value })}
         type="text"
       />
-      <button onClick={() => this.createShortLink()}>Create</button>
+      <button onClick={() => @createShortLink()}>Create</button>
+      {@state.shortened}
     </div>
 
 export default Shortener
