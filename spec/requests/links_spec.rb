@@ -17,7 +17,15 @@ RSpec.describe 'Links API', type: :request do
     end
   end
 
-  describe 'store link' do
+  describe 'count' do
+    before { get links_count_path }
+
+    it 'counts all the links' do
+      expect(json).to eq(10)
+    end
+  end
+
+  describe 'store' do
     # valid payload
     let(:valid_attributes) { {
       url: Faker::Internet.url,
