@@ -10,6 +10,10 @@ gem 'mysql2', '>= 0.4.4', '< 0.6.0'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 
+# seeding
+gem 'faker'
+gem 'populator'
+
 # Use Figaro to manage ENV
 gem 'figaro'
 
