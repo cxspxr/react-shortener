@@ -15,7 +15,7 @@ createHash = (itemCount) =>
     hashDigits.unshift remainder
   console.log(hashDigits);
 
-  alphabetArray = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789`.split('');
+  alphabetArray = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789".split('');
 
   # Convert hashDigits to base62 representation
   hashString = ''
@@ -23,8 +23,8 @@ createHash = (itemCount) =>
   while hashDigits.length > i
       hashString += alphabetArray[hashDigits[i]]
       i++
-
   hashString
+
 
 class Shortener extends Component
   constructor: (props) ->
@@ -33,15 +33,14 @@ class Shortener extends Component
       url: ''
 
   createShortLink: () ->
-    count = 0
     axios.get URL + 'links/count'
-      .then (res) =>
-        count = +res.data
+    .then (res) =>
+      count = +res.data
 
-    hash = createHash count
-    axios.post URL + 'links/store',
-      url: @state.url
-      shortened: hash
+      hash = createHash count
+      axios.post URL + 'links/store',
+        url: @state.url
+        shortened: hash
 
   render: ->
     <div>
