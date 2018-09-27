@@ -16,6 +16,9 @@ gem 'active_model_serializers', '~> 0.10.0'
 # seeding
 gem 'faker'
 
+# request attacks
+gem 'rack-attack'
+
 # Use Figaro to manage ENV
 gem 'figaro'
 
