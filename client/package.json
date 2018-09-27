@@ -36,8 +36,7 @@
     "start": "webpack-dev-server  --config webpack.dev.js --mode=development",
     "prod": "webpack --config webpack.prod.js -p",
     "test-once": "jest ./src/**/*",
-    "test": "npm run test-once -- --watch",
-    "post-husky": "cat ../.branch-ignore > ../.git/hooks/post-checkout"
+    "test": "npm run test-once -- --watch"
   },
   "peerDependencies": {
     "babel-core": "6.x || ^7.0.0-bridge.0"
