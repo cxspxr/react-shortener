@@ -10,5 +10,8 @@ module.exports = {
   moduleFileExtensions: ['js', 'json', 'coffee', 'litcoffee', 'coffee.md'],
   testRegex: '\\.(spec|test)\\.(coffee|litcoffee|coffee\\.md)',
   transform: { '^.+\\.coffee$': '<rootDir>/src/utils/jestTransform.js' },
-  testEnvironment: 'node'
+  testEnvironment: 'node',
+  setupFiles: [
+    "<rootDir>/src/utils/setupEnzyme.js"
+  ],
 }

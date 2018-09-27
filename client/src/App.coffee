@@ -6,6 +6,8 @@ import styles from 'styles/App.sss'
 
 import LinkList from './components/LinkList'
 
-export default class App extends Component
+class App extends Component
   render: ->
     <LinkList />
+
+export default App
