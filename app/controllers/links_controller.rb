@@ -13,8 +13,11 @@ class LinksController < ApplicationController
   end
 
   def get
-    @link = Link.where(url: link_params[:url])
-    json_response(@link)
+    @link = Link.where(url: link_params[:url]).first
+
+    if @link
+      json_response(@link.shortened)
+    end
   end
 
   def count
