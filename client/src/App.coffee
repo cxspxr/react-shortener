@@ -4,10 +4,10 @@ import logo from 'assets/logo.svg'
 import 'styles/index.css'
 import styles from 'styles/App.sss'
 
-import LinkList from './components/LinkList'
+import Shortener from './components/Shortener'
 
 class App extends Component
   render: ->
-    <LinkList />
+    <Shortener />
 
 export default App
