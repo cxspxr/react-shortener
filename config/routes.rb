@@ -5,7 +5,7 @@ Rails.application.routes.draw do
       get 'count', to: 'links#count', as: 'count'
       post 'get', to: 'links#get', as: 'get'
 
-      if Rails.env.development?
+      if Rails.env.development? || Rails.env.test?
         get 'index', to: 'links#index', as: 'index'
       end
     end
