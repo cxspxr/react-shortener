@@ -40,12 +40,11 @@ class Shortener extends Component
       url: @state.url
     .then (res) =>
       existing = res.data
-      console.log existing
 
       # if it's present - return shortened
       if existing
         @setState
-          shortened: existing
+          shortened: existing.shortened
         return
 
       # otherwise make hash
