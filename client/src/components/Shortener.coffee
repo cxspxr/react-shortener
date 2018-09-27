@@ -34,7 +34,7 @@ class Shortener extends Component
 
   createShortLink: () ->
     hash = createHash
-    axios.post URL + 'create'
+    axios.post URL + 'links/store'
 
 
   render: ->

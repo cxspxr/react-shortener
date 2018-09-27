@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   scope '/api' do
-    get 'links', to: 'links#index'
+    scope '/links' do
+      get 'index', to: 'links#index'
+      post 'store/:link_params', to: 'links#store'
+    end
   end
 end
