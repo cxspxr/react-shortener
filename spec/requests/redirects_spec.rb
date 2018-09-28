@@ -11,6 +11,11 @@ RSpec.describe 'Redirection', type: :request do
       it 'redirects successfully with 302' do
         expect(response).to have_http_status(302)
       end
+      
+      it 'creates a redirect for this link' do
+        expect(links.first.redirects.any?).to be_truthy
+        expect(links.first.redirects.count).to eq(1)
+      end      
     end
 
     context 'when there is no such link' do
@@ -18,6 +23,10 @@ RSpec.describe 'Redirection', type: :request do
 
       it 'responds with unprocessable entity' do
         expect(response).to have_http_status(422)
+      end
+      
+      it 'doesnt create any redirects' do
+        expect(Redirect.any?).to_not be_truthy        
       end
 
       it 'returns \'bad link\'' do
