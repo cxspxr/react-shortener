@@ -7,6 +7,7 @@ RSpec.describe Link, type: :model do
   it { should validate_presence_of(:shortened) }
   it { should validate_uniqueness_of(:shortened) }
 
+  # URL Validity
   it {
       should allow_values(
         'https://git.io',
@@ -24,5 +25,21 @@ RSpec.describe Link, type: :model do
     ).for(:url)
   }
 
+  # Base62 Validity
+  it {
+      should allow_values(
+        '1',
+        '23x',
+        'wEq2',
+        'xErQxW23152W'
+      ).for(:shortened)
+  }
 
+  it {
+    should_not allow_values(
+      'a b',
+      'a21.w',
+      'qwex@2'
+    ).for(:shortened)
+  }
 end

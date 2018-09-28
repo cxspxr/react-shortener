@@ -28,7 +28,7 @@ RSpec.describe 'Links API', type: :request do
     # valid payload
     let(:valid_attributes) { {
       url: Faker::Internet.url,
-      shortened: Faker::FamilyGuy.character
+      shortened: Faker::Number.number
     } }
 
     before { post links_get_path, params: { url: valid_attributes[:url] }}
@@ -57,7 +57,7 @@ RSpec.describe 'Links API', type: :request do
     # valid payload
     let(:valid_attributes) { {
       url: Faker::Internet.url,
-      shortened: Faker::FamilyGuy.character
+      shortened: Faker::Number.number
     } }
 
     context 'when the request is valid' do
@@ -101,11 +101,11 @@ RSpec.describe 'Links API', type: :request do
     context 'when there is the same url' do
       before { post links_store_path, params: {
         url: valid_attributes[:url],
-        shortened: Faker::Name.unique.name
+        shortened: Faker::Number.unique.number
       } }
       before { post links_store_path, params: {
         url: valid_attributes[:url],
-        shortened: Faker::Name.unique.name
+        shortened: Faker::Number.unique.number
       } }
 
       it 'returns status code 422' do
