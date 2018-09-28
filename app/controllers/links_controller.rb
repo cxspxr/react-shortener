@@ -8,6 +8,7 @@ class LinksController < ApplicationController
     @link = Link.create!(link_params)
 
     if @link.valid?
+      @link.shortened = "#{request.base_url}/#{@link.shortened}"
       json_response(@link, :created)
     end
   end
