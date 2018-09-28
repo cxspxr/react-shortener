@@ -1,5 +1,8 @@
 env = process.env.APP_URL
 
-url = env || 'http://localhost:8080/api'
+url = if env
+    env
+  else
+    'http://localhost:8080/api'
 
 export default url
