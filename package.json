@@ -6,7 +6,9 @@
     "npm": "6.4.1"
   },
   "scripts": {
-    "build": "npm --prefix client i && npm --prefix client i babel-core@^7.0.0-bridge.0 && npm --prefix client run prod",
+    "prod": "npm --prefix client run prod",
+    "wire-dep": "npm --prefix client i && npm --prefix client i babel-core@^7.0.0-bridge.0",
+    "build": "npm run wire-dep && npm run prod",
     "deploy": "cp -a client/dist/ public/",
     "heroku-postbuild": "npm run build && npm run deploy",
     "post-husky": "cat ../.branch-ignore > ../.git/hooks/post-checkout",
