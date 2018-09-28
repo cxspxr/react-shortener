@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 
-import axios from 'axios'
-import api from '../api/LinksAPI'
+import links from '../api/LinksAPI'
 
 import base62 from '../utils/encode/base62'
 
@@ -13,30 +12,24 @@ class Shortener extends Component
       url: ''
       shortened: ''
 
-  fetchExistingLink: () ->
-    axios.post api.get,
-        url: @state.url
-
-  fetchCountOfLinks: () ->
-    axios.get api.count
-
   storeLink: (hash) ->
-    axios.post api.store,
-      url: @state.url
-      shortened: hash
-    .then (res) =>
-      # set shortened
-      @setState
-        shortened: res.data.shortened
+    links.store
+        url: @state.url
+        shortened: hash
+      .then (res) =>
+        # set shortened
+        @setState
+          shortened: res.data.shortened
 
-    .catch (e) =>
-      # recreate if fails (could be so with parallel requests)
-      if e.response.status is 422
-        do @createShortLink
+      .catch (e) =>
+        # recreate if fails (could be so with parallel requests)
+        if e.response.status is 422
+          console.log e.response.data
+          do @createShortLink
 
   createShortLink: () ->
     # fetch existing link
-    @fetchExistingLink().then (res) =>
+    links.get(@state.url).then (res) =>
       existing = res.data
 
       # if it's present - return shortened
@@ -46,7 +39,7 @@ class Shortener extends Component
         return
 
       # otherwise make hash
-      @fetchCountOfLinks().then (res) =>
+      links.count().then (res) =>
         hash = base62 +res.data
         @storeLink hash
 

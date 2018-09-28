@@ -1,8 +1,12 @@
 import URL from '../utils/url/url'
+import axios from 'axios'
 
-API = {}
+routes = {}
 
 for route in ['get', 'count', 'store']
-  API[route] = "#{URL}/links/#{route}"
+  routes[route] = "#{URL}/links/#{route}"
 
-export default API
+export default
+  get: (url) -> axios.post routes.get, { url }
+  count: -> axios.get routes.count
+  store: ({ url, shortened }) -> axios.post routes.store, { url, shortened }
