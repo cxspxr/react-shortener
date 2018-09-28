@@ -33,5 +33,6 @@ module ReactRails
     config.api_only = true
     config.generators.test_framework :rspec
     config.middleware.use Rack::Attack
+    config.autoload_paths << Rails.root.join('app/validators')
   end
 end
