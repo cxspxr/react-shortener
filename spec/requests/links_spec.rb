@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe 'Links API', type: :request do
   let!(:links) { create_list(:link, 10) }
-  let(:link_id) { link.first.id }
 
   describe 'all' do
     before { get links_index_path }
