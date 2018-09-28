@@ -25,7 +25,7 @@ module.exports = merge(common, {
     new DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('production'),
-        APP_URL: process.env.APP_URL
+        APP_URL: JSON.stringify(process.env.APP_URL)
       }
     })
   ]
