@@ -16,7 +16,7 @@ class LinksController < ApplicationController
     @link = Link.where(url: link_params[:url]).first
 
     if @link
-      json_response({ shortened: @link.shortened })
+      json_response({ shortened: "#{request.base_url}/#{@link.shortened}" })
     else
       json_response nil, :no_content
     end
