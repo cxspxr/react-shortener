@@ -11,4 +11,6 @@ Rails.application.routes.draw do
     end
   end
 
+  get '/:shortened', to: 'redirect#redirect', as: 'redirect'
+
 end

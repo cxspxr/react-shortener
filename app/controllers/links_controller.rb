@@ -26,7 +26,6 @@ class LinksController < ApplicationController
     @count = Link.count
     json_response(@count)
   end
-
   def link_params
     params.permit(:url, :shortened)
   end

@@ -1,4 +1,6 @@
 class Link < ApplicationRecord
-  validates :url, presence: true, uniqueness: { case_sensitive: false }
-  validates :shortened, presence: true, uniqueness: true
+  validates :url, presence: true, uniqueness: { case_sensitive: false }, url: true
+  validates :shortened, presence: true, uniqueness: true, base62: true
+
+  has_many :redirects
 end
