@@ -1,13 +1,17 @@
 import React, { Component } from 'react'
 import logo from 'assets/logo.svg'
 
-import 'styles/index.css'
-import styles from 'styles/App.sss'
+import './index.css'
+import styles from './App.sss'
 
-import Shortener from './components/Shortener'
+import Shortener from 'Components/Shortener/Shortener'
 
 class App extends Component
   render: ->
-    <Shortener />
+    <div className={styles.app}>
+      <div>
+        <Shortener />
+      </div>
+    </div>
 
 export default App

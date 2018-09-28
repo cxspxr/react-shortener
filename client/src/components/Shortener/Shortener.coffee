@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
 
-import links from '../api/LinksAPI'
+import links from '../../api/LinksAPI'
+import base62 from '../../utils/encode/base62'
+import Input from '../Input/Input'
+import Button from '../Button/Button'
 
-import base62 from '../utils/encode/base62'
-
+import styles from './Shortener.sss'
+import InputStyles from './inline/Input'
 
 class Shortener extends Component
   constructor: (props) ->
@@ -24,7 +27,8 @@ class Shortener extends Component
       .catch (e) =>
         # recreate if fails (could be so with parallel requests)
         if e.response.status is 422
-          do @createShortLink
+          # do @createShortLink
+          console.log e.response.data
 
   createShortLink: () ->
     # fetch existing link
@@ -44,16 +48,18 @@ class Shortener extends Component
 
 
   render: ->
-    <div>
-      <input
-        id="url"
+    <div className={styles.shortener}>
+      <Input
         value={@state.url}
         placeholder="Link URL"
         onChange={(e) => @setState({ url: e.target.value })}
         type="text"
+        style={InputStyles}
       />
-      <button onClick={() => @createShortLink()}>Create</button>
-      {@state.shortened}
+      <Button onClick={() => @createShortLink()}>Create</Button>
+      <div>
+        {@state.shortened}
+      </div>
     </div>
 
 export default Shortener

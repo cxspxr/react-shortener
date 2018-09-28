@@ -3,7 +3,7 @@
 # dependencies
 /node_modules
 
-/src/components/__snapshots__
+*.coffee.snap
 
 # testing
 /coverage

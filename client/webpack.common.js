@@ -18,7 +18,12 @@ module.exports = {
       isDev ? '.dev.coffee' : '.prod.coffee',
       isDev ? '.dev.js' : '.prod.js',
     ],
-    modules: ['node_modules', path.resolve('./src')]
+    modules: ['node_modules', path.resolve('./src')],
+    alias: {
+        Components: path.resolve(__dirname, './src/components/'),
+        Utils: path.resolve(__dirname, './src/utils/'),
+        API: path.resolve(__dirname, './src/api')
+    }
   },
   devtool: 'source-map',
   module: {
