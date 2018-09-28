@@ -10,6 +10,8 @@ gem 'mysql2', '>= 0.4.4', '< 0.6.0'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 
+# geolocation
+gem 'geocoder'
 
 # caching
 gem 'dalli'
