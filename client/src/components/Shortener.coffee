@@ -24,7 +24,6 @@ class Shortener extends Component
       .catch (e) =>
         # recreate if fails (could be so with parallel requests)
         if e.response.status is 422
-          console.log e.response.data
           do @createShortLink
 
   createShortLink: () ->
