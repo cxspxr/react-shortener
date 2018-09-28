@@ -24,7 +24,8 @@ module.exports = merge(common, {
     new UglifyJsPlugin,
     new DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify('production')
+        NODE_ENV: JSON.stringify('production'),
+        APP_URL: process.env.APP_URL
       }
     })
   ]
