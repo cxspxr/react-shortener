@@ -3,6 +3,8 @@
 # dependencies
 /node_modules
 
+/src/components/__snapshots__
+
 # testing
 /coverage
 
