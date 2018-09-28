@@ -8,6 +8,7 @@ class Input extends React.Component
     super(props)
 
   render: ->
+
     <div
       className={styles.wrapper}
       style={@props.style}
@@ -31,7 +32,7 @@ class Input extends React.Component
           "#{styles['highlight--invalid']}": !@props.valid
         }) }
       >
-          { @props.value.replace(/ /g, "\u00a0") }
+          { if @props.value then @props.value.replace(/ /g, "\u00a0") }
       </span>
     </div>
 

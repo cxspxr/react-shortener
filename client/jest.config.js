@@ -11,5 +11,6 @@ module.exports = {
   testRegex: '\\.(spec|test)\\.(coffee|litcoffee|coffee\\.md)$',
   setupTestFrameworkScriptFile: "<rootDir>/src/utils/setupEnzyme.js",
   transform: { '^.+\\.coffee$': '<rootDir>/src/utils/jestTransform.js' },
-  testEnvironment: 'node'
+  testEnvironment: 'node',
+  snapshotSerializers: ["enzyme-to-json/serializer"]
 }
