@@ -8,13 +8,13 @@ What I'm gonna use:
 
 * [RSpec](https://github.com/rspec/rspec-rails) for testing
 
-* [Shoulda Matchers](https://github.com/thoughtbot/shoulda-matchers) for simplier RSpec testing
+* [Shoulda Matchers](https://github.com/thoughtbot/shoulda-matchers) for simplier `RSpec` testing
 
 * [Faker](https://github.com/stympy/faker)
 
 * [Heroku](https://heroku.com/) for deployment & development
 
-* [Husky](https://github.com/typicode/husky) to manage GIT hooks
+* [Husky](https://github.com/typicode/husky) to manage GIT hooks & to run `RSpec` test on `pre-commit` & `pre-push`
 
 * [Rack::Attack](https://github.com/kickstarter/rack-attack) to prevent DOS
 * [Memcached/Dalli](https://github.com/petergoldstein/dalli) for requests throttling
