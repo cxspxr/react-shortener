@@ -9,6 +9,7 @@ module.exports = {
   },
   moduleFileExtensions: ['js', 'json', 'coffee', 'litcoffee', 'coffee.md'],
   testRegex: '\\.(spec|test)\\.(coffee|litcoffee|coffee\\.md)$',
+  setupTestFrameworkScriptFile: "<rootDir>/src/utils/setupEnzyme.js",
   transform: { '^.+\\.coffee$': '<rootDir>/src/utils/jestTransform.js' },
   testEnvironment: 'node'
 }
