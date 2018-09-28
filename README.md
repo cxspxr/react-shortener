@@ -1,33 +1,73 @@
-# Rails API + React Template
+# :postbox: Rails API for URL Shortening :outbox_tray:
 
-Includes:
+What I'm gonna use:
 
-* Rails 5.2.1 API
+* [Rails](https://github.com/rails/rails) API 5.2.1
 
-* MySQL2
+* [MySQL2](https://github.com/brianmario/mysql2)
 
-* CoffeeScript2
+* [RSpec](https://github.com/rspec/rspec-rails) for testing
 
-* Stylus + PostCSS (SugarSS) + Rupture
+* [Shoulda Matchers](https://github.com/thoughtbot/shoulda-matchers) for simplier RSpec testing
 
-* Husky
+* [Faker](https://github.com/stympy/faker)
 
-* Jest
+* [Heroku](https://heroku.com/) for deployment & development
 
-* Webpack for dev & prod
+* [Husky](https://github.com/typicode/husky) to manage GIT hooks
 
-* And more
+* [Rack::Attack](https://github.com/kickstarter/rack-attack) to prevent DOS
+* [Memcached/Dalli](https://github.com/petergoldstein/dalli) for requests throttling
 
+* [Geocoder](https://github.com/alexreisner/geocoder) to track locations
+
+----
 
 ## Development
 
-```bash
-rake start
-```
+Use `rails s` and [curl](https://github.com/curl/curl) for HTTP requests.
 
+---
 
-## Deployment
+## Project Structure
 
-```bash
-npm run build
-```
+### `app/`
+
+You may know the `app/` structure since it's pretty default. It's the home to `models`, `controllers`, `validators`, `exception handlers` etc.
+
+#### Controllers
+
+There are three controllers which are interesting for us:
+* `application_controller` with module dependencies;
+* `links_controller` handles `store`-ing, `get`-ing, `count`-ing for the `Link` model;
+* `redirect_controller` with a single method to `redirect` and store the `Redirect` itself (i.e. it's location) using the [Geocoder](https://github.com/alexreisner/geocoder);
+
+#### Models
+
+* `Link` to store `:url` and `:shortened`;
+* `Redirect` to store `:location` and `:time`;
+
+A single `Link` has many `Redirects`. A single `Redirect` belongs to one `Link`.
+
+#### Validators
+
+* `Base62Validator` to `validate :base62` shortening;
+* `UrlValidator` to `validate :url` formatting;
+
+### `config/`
+
+* `initializers/rack_attack.rb` to configure [Rack::Attack](https://github.com/kickstarter/rack-attack);
+
+* `environments/*.rb` to manage heroku `production` and local environments (`development` and `testing`);
+
+### `spec/`
+
+This is for [RSpec](https://github.com/rspec/rspec-rails) with [Shoulda Matchers](https://github.com/thoughtbot/shoulda-matchers) & [Faker](https://github.com/stympy/faker) testing.
+
+I belive that everything is backed by tests by now.
+
+### Specific files
+
+`.branch-ignore` is used by me to manage branch-specific `.gitignore` using [Husky](https://github.com/typicode/husky) and `.gitignore.<branch-name>` files.
+
+### `/.*|(other)/` folders & files are pretty default
