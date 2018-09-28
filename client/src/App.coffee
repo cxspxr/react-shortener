@@ -4,7 +4,9 @@ import logo from 'assets/logo.svg'
 import './index.css'
 import styles from './App.sss'
 
-import Shortener from 'Components/Shortener/Shortener'
+import Sticker from './components/Sticker/Sticker'
+import Shortener from './components/Shortener/Shortener'
+
 
 class App extends Component
   render: ->
@@ -12,6 +14,10 @@ class App extends Component
       <div>
         <Shortener />
       </div>
+      <Sticker
+        href="https://github.com/cxsper/react-shortener/tree/react"
+      >
+      </Sticker>
     </div>
 
 export default App

@@ -1,0 +1,22 @@
+.sticker
+  height: 80px
+  position: fixed
+  bottom: -20px
+  right: 5%
+  transition: all .3s ease
+
+  +below(720px)
+    height: 50px
+    bottom: -10px
+
+  +below(480px)
+    height: 40px
+    bottom: -5px
+
+  &:hover
+    bottom: -10px
+
+
+
+.img
+  height: 100%
