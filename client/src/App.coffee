@@ -16,6 +16,7 @@ class App extends Component
       </div>
       <Sticker
         href="https://github.com/cxsper/react-shortener/tree/react"
+        src="https://cdn-images-1.medium.com/max/1600/1*DVkLFr953djSo0q6cA0-kg.png"
       >
       </Sticker>
     </div>

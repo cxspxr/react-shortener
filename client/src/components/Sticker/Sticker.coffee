@@ -9,5 +9,5 @@ export default (props) ->
       style={props.style}
       target="_blank"
     >
-      <img className={styles.img} src="http://cxsper.github.io/player/img/octocat.svg" alt="" />
+      <img className={styles.img} src={props.src} />
     </a>
