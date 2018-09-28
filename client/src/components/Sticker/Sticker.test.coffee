@@ -7,9 +7,18 @@ import toJson from 'enzyme-to-json'
 describe '<Sticker />', () =>
 
   describe 'render()', () =>
-    test 'renders component', () =>
+    component = {}
+    beforeEach () =>
       component = shallow(
         <Sticker />
       )
 
+    test 'renders component', () =>
       expect(component).toMatchSnapshot()
+
+    test 'has an img element', () =>
+      expect(
+        component.containsMatchingElement(
+          <img />
+        )
+      ).toBe(true)

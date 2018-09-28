@@ -7,12 +7,28 @@ import toJson from 'enzyme-to-json'
 describe '<Input />', () =>
 
   describe 'render()', () =>
-    test 'renders component', () =>
+    component = {}
+    beforeEach () =>
       component = shallow(
         <Input />
       )
 
+    test 'renders component', () =>
       expect(component).toMatchSnapshot()
+
+    test 'contains input element', () =>
+      expect(
+        component.containsMatchingElement(
+          <input />
+        )
+      ).toBe(true)
+
+    test 'contains span (highlighting) element', () =>
+      expect(
+        component.containsMatchingElement(
+          <span></span>
+        )
+      ).toBe(true)
 
   describe 'onChange()', () =>
 

@@ -1,11 +1,15 @@
 import React from 'react'
 import Shortener from './Shortener'
 # import renderer from 'react-test-renderer'
-import { shallow } from 'enzyme'
+import { shallow, mount } from 'enzyme'
 import toJson from 'enzyme-to-json'
+import Sticker from '../Sticker/Sticker'
 
 describe '<Shortener />', () =>
   describe 'render()', () =>
+    wrapper = {}
+    beforeEach () =>
+      wrapper = mount(<Shortener />)
+
     test 'renders the component', () =>
-      wrapper = shallow(<Shortener />)
       expect(wrapper).toMatchSnapshot()
