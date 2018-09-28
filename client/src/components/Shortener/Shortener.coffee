@@ -4,6 +4,7 @@ import links from '../../api/LinksAPI'
 import base62 from '../../utils/encode/base62'
 import Input from '../Input/Input'
 import Button from '../Button/Button'
+import Copier from '../Copier/Copier'
 
 import styles from './Shortener.sss'
 import InputStyles from './inline/Input'
@@ -38,10 +39,10 @@ class Shortener extends Component
           shortened: res.data.shortened
 
       .catch (e) =>
-        # recreate if fails (could be so with parallel requests)
         if e.response.status is 422
-          # do @createShortLink
           console.log e.response.data
+          @setState
+            shortened: ''
 
   createShortLink: () ->
     # fetch existing link
@@ -61,7 +62,17 @@ class Shortener extends Component
 
 
   render: ->
+    link = if @state.shortened
+      <Copier what={@state.shortened}>
+        Click on me! Shortened: {@state.shortened}
+      </Copier>
+    else
+      "Let's paste a proper link..."
+
     <div className={styles.shortener}>
+      <div className={styles.shortened}>
+        {link}
+      </div>
       <Input
         value={@state.url}
         placeholder="Link URL"
@@ -74,11 +85,8 @@ class Shortener extends Component
         onClick={() => @createShortLink()}
         disabled={!@state.isValid}
       >
-        Create
+        Shorten
       </Button>
-      <div>
-        {@state.shortened}
-      </div>
     </div>
 
 export default Shortener
