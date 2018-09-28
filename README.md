@@ -1,73 +1,76 @@
-# :postbox: Rails API for URL Shortening :outbox_tray:
+# :zap: React URL Shortener :cyclone:
 
 What I'm gonna use:
 
-* [Rails](https://github.com/rails/rails) API 5.2.1
+* [React](https://github.com/facebook/react)
 
-* [MySQL2](https://github.com/brianmario/mysql2)
+* [Webpack](https://github.com/webpack/webpack) for bundling & developing
 
-* [RSpec](https://github.com/rspec/rspec-rails) for testing
+* [CoffeeScript2](https://github.com/jashkenas/coffeescript)
 
-* [Shoulda Matchers](https://github.com/thoughtbot/shoulda-matchers) for simplier `RSpec` testing
+* [Stylus](https://github.com/stylus/stylus) CSS Preprocessor with [Rupture](https://github.com/jescalan/rupture) media queries
 
-* [Faker](https://github.com/stympy/faker)
+* [PostCSS](https://github.com/postcss/postcss) for `lint`ing and `autoprefix`ing mostly
 
-* [Heroku](https://heroku.com/) for deployment & development
+* [SugarSS](https://github.com/postcss/sugarss) to `lint` `Stylus`
 
-* [Husky](https://github.com/typicode/husky) to manage GIT hooks & to run `RSpec` test on `pre-commit` & `pre-push`
+* [Babel](https://github.com/babel/babel) along with it's ***delightful*** breaking changes in `v7`
 
-* [Rack::Attack](https://github.com/kickstarter/rack-attack) to prevent DOS
-* [Memcached/Dalli](https://github.com/petergoldstein/dalli) for requests throttling
+* [Jest](https://github.com/facebook/jest), [Enzyme](https://github.com/airbnb/enzyme) for testing (I would not call it testing, I'm new to `Jest` & `Enzyme` and to the whole `React` ecosystem)
 
-* [Geocoder](https://github.com/alexreisner/geocoder) to track locations
+* [Husky](https://github.com/typicode/husky) to manage GIT hooks & to run `Jest` test on `pre-commit` & `pre-push`
+
+* [Heroku](https://heroku.com) for delpoyment & for local development using `Rake` + `./Procfile.dev` in order to run my `Rails API` server along with `webpack-dev-server`. I belive it's okay to do like this.
 
 ----
 
 ## Development
 
-Use `rails s` and [curl](https://github.com/curl/curl) for HTTP requests.
+Use `rake start` to boot `bundle exec rails -s` and `webpack-dev-server` simultaneously.
 
 ---
 
 ## Project Structure
 
-### `app/`
+### `client/public`
+Static files.
 
-You may know the `app/` structure since it's pretty default. It's the home to `models`, `controllers`, `validators`, `exception handlers` etc.
+### `client/src/api`
+API module for `count`ing, `store`ing and `get`ing `Links`.
 
-#### Controllers
+### `client/src/components`
+This one serves as the React `components'` storage. Usually `client/src/components/`.sample contains `.coffee` for the logic written in `CoffeeScript2`, `.sss` for the styles written in `Stylus/SugarSS` and the `.test.coffee` for  testing with `Jest`.
 
-There are three controllers which are interesting for us:
-* `application_controller` with module dependencies;
-* `links_controller` handles `store`-ing, `get`-ing, `count`-ing for the `Link` model;
-* `redirect_controller` with a single method to `redirect` and store the `Redirect` itself (i.e. it's location) using the [Geocoder](https://github.com/alexreisner/geocoder);
+***Sometimes*** it contains another folder `inline` which serves for inline styles for ***some*** components needed to be overwritten.
 
-#### Models
 
-* `Link` to store `:url` and `:shortened`;
-* `Redirect` to store `:location` and `:time`;
+### `client/utils/*.js`
+`Jest` configuration.
 
-A single `Link` has many `Redirects`. A single `Redirect` belongs to one `Link`.
+### `client/utils/encode`
+`base62` number encoder and the `.test.coffee` for it.
 
-#### Validators
+### `client/utils/url`
+`process.env.APP_URL` passed using the `Webpack` bundler.
 
-* `Base62Validator` to `validate :base62` shortening;
-* `UrlValidator` to `validate :url` formatting;
+### `client/utils/variables`
+`Stylus/SugarSS` variables.
 
-### `config/`
+### `client/App.coffee`
+Entry point. We call it `instance` in `VueJS`. Has it's own `App.sss` with styles.
 
-* `initializers/rack_attack.rb` to configure [Rack::Attack](https://github.com/kickstarter/rack-attack);
+### `client/index.(dev|prod).js`
+That's how `Webpack` knows what he should do in different `environments`. I need the `hot-loading` during the development.
 
-* `environments/*.rb` to manage heroku `production` and local environments (`development` and `testing`);
+### `client/jest.config.js`
+`Jest` configuration.
 
-### `spec/`
+### `client/postcss.config.js`
+`PostCSS` plugins.
 
-This is for [RSpec](https://github.com/rspec/rspec-rails) with [Shoulda Matchers](https://github.com/thoughtbot/shoulda-matchers) & [Faker](https://github.com/stympy/faker) testing.
+### `webpack.(common|dev|prod).js`
+`.common` to be shared between `.dev` & `.prod` for different `env`
 
-I belive that everything is backed by tests by now.
+---
 
-### Specific files
-
-`.branch-ignore` is used by me to manage branch-specific `.gitignore` using [Husky](https://github.com/typicode/husky) and `.gitignore.<branch-name>` files.
-
-### `/.*|(other)/` folders & files are pretty default
+:tada:
