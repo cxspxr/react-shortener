@@ -14,6 +14,19 @@ class Shortener extends Component
     @state =
       url: ''
       shortened: ''
+      isValid: false
+
+  validate: (value) ->
+    { isValid } = @state
+
+    isValid = value.match /^(?:http(s)?:\/\/)[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/
+
+    @setState { isValid }
+
+  onInputChange: (e) =>
+    { value } = e.target
+    @setState url: value
+    @validate value
 
   storeLink: (hash) ->
     links.store
@@ -52,11 +65,17 @@ class Shortener extends Component
       <Input
         value={@state.url}
         placeholder="Link URL"
-        onChange={(e) => @setState({ url: e.target.value })}
+        onChange={@onInputChange}
         type="text"
         style={InputStyles}
+        valid={@state.isValid}
       />
-      <Button onClick={() => @createShortLink()}>Create</Button>
+      <Button
+        onClick={() => @createShortLink()}
+        disabled={!@state.isValid}
+      >
+        Create
+      </Button>
       <div>
         {@state.shortened}
       </div>

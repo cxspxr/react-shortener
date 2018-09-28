@@ -12,6 +12,13 @@
   border: none
   outline: none
   border-bottom: 3px solid rgba(150,150,150, .4)
+  transition color $invalid_transition ease
+
+  &--invalid
+    color: alpha($invalid, .7)
+
+    &:hover
+      color: $invalid
 
   &:focus
     outline none
@@ -20,6 +27,9 @@
   &:focus
     & + .highlight
       border-top: 3px solid #FF7043
+
+    & + .highlight--invalid
+      border-top: 3px solid $invalid
 
 .wrapper
   position: relative
@@ -35,7 +45,6 @@
 
 .highlight
   user-select: none
-  border-top: 3px solid #FF8A65
   position: absolute
   left: 0
   bottom: 0
@@ -43,4 +52,8 @@
   height: 0
   color: transparent
   overflow: hidden
-  transition: border-top 250ms ease
+  transition: border-top $invalid_transition ease
+  border-top: 3px solid #FF8A65
+
+  &--invalid
+    border-top: 3px solid alpha($invalid, .7)

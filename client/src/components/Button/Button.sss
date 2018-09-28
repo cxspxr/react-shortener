@@ -18,7 +18,11 @@
   background-image:  $gradient
   text-transform: uppercase
   font-weight: bold
-  transition: box-shadow 250ms ease-in-out, transform 150ms ease
+  transition: box-shadow 250ms ease-in-out, transform 150ms ease, opacity .5s ease
+
+  &:disabled
+    cursor: not-allowed
+    opacity: .5
 
   &:hover
   &:focus
