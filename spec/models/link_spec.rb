@@ -7,6 +7,8 @@ RSpec.describe Link, type: :model do
   it { should validate_presence_of(:shortened) }
   it { should validate_uniqueness_of(:shortened) }
 
+  it { should have_many(:redirects) }
+
   # URL Validity
   it {
       should allow_values(
