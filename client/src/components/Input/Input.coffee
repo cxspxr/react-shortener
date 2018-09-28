@@ -19,6 +19,7 @@ class Input extends React.Component
         onChange={@props.onChange}
         type={@props.type}
         value={@props.value}
+        autoFocus={@props.autoFocus}
         className={ classnames(styles.input, {
           "#{styles['input--invalid']}": !@props.valid
         }) }

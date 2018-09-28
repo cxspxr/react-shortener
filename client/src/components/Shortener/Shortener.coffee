@@ -95,11 +95,11 @@ class Shortener extends Component
       </div>
       <Input
         value={@state.url}
-        placeholder="Link URL"
         onChange={@onInputChange}
         type="text"
         style={InputStyles}
         valid={@state.isValid}
+        autoFocus={true}
       />
       <Button
         onClick={() => @createShortLink()}
