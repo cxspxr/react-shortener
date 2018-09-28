@@ -9,6 +9,8 @@ import Copier from '../Copier/Copier'
 import styles from './Shortener.sss'
 import InputStyles from './inline/Input'
 
+fallbackMessage = "Let's paste a proper link..."
+
 class Shortener extends Component
   constructor: (props) ->
     super(props)
@@ -16,18 +18,34 @@ class Shortener extends Component
       url: ''
       shortened: ''
       isValid: false
+      message: fallbackMessage
 
   validate: (value) ->
     { isValid } = @state
-
     isValid = value.match /^(?:http(s)?:\/\/)[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/
-
     @setState { isValid }
 
   onInputChange: (e) =>
     { value } = e.target
     @setState url: value
     @validate value
+
+  resetMessage: -> @setState message: fallbackMessage
+  reset: ->
+    @setState
+      shortened: ''
+      url: ''
+      isValid: false
+
+  onCopy: =>
+    do @reset
+    new Promise (resolve, reject) =>
+        @setState({ message: "Your link is copied!" })
+        setTimeout =>
+          resolve()
+        , 3000
+      .then () =>
+        do @resetMessage
 
   storeLink: (hash) ->
     links.store
@@ -41,8 +59,7 @@ class Shortener extends Component
       .catch (e) =>
         if e.response.status is 422
           console.log e.response.data
-          @setState
-            shortened: ''
+          do @reset
 
   createShortLink: () ->
     # fetch existing link
@@ -63,11 +80,14 @@ class Shortener extends Component
 
   render: ->
     link = if @state.shortened
-      <Copier what={@state.shortened}>
+      <Copier
+        what={@state.shortened}
+        onCopy={@onCopy}
+      >
         Click on me! Shortened: {@state.shortened}
       </Copier>
     else
-      "Let's paste a proper link..."
+      @state.message
 
     <div className={styles.shortener}>
       <div className={styles.shortened}>

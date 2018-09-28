@@ -15,6 +15,8 @@ class Copier extends Component
     document.execCommand 'copy'
     document.body.removeChild el
 
+    do @props.onCopy
+
   render: ->
     <div onClick={@handleOnClick}>
       {@props.children}

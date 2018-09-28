@@ -7,19 +7,6 @@ class Input extends React.Component
   constructor: (props) ->
     super(props)
 
-    @state =
-      inputValue: ''
-
-    @onInputChange = @onInputChange.bind @
-
-  onInputChange: (e) ->
-    @props.onChange e
-
-    { value } = e.target
-
-    @setState
-      inputValue: value
-
   render: ->
     <div
       className={styles.wrapper}
@@ -29,9 +16,9 @@ class Input extends React.Component
         id={@props.id}
         value={@props.url}
         placeholder={@props.placeholder}
-        onChange={@onInputChange}
+        onChange={@props.onChange}
         type={@props.type}
-        value={@state.inputValue}
+        value={@props.value}
         className={ classnames(styles.input, {
           "#{styles['input--invalid']}": !@props.valid
         }) }
@@ -43,7 +30,7 @@ class Input extends React.Component
           "#{styles['highlight--invalid']}": !@props.valid
         }) }
       >
-          { @state.inputValue.replace(/ /g, "\u00a0") }
+          { @props.value.replace(/ /g, "\u00a0") }
       </span>
     </div>
 
