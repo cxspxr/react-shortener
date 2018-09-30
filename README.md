@@ -17,6 +17,8 @@ What I'm gonna use:
 * [Husky](https://github.com/typicode/husky) to manage GIT hooks & to run `RSpec` test on `pre-commit` & `pre-push`
 
 * [Rack::Attack](https://github.com/kickstarter/rack-attack) to prevent DOS
+* [Rack CORS](https://github.com/cyu/rack-cors) for Cross-Origin Resource Sharing
+
 * [Memcached/Dalli](https://github.com/petergoldstein/dalli) for requests throttling
 
 * [Geocoder](https://github.com/alexreisner/geocoder) to track locations
@@ -26,6 +28,14 @@ What I'm gonna use:
 ## Development
 
 Use `rails s` and [curl](https://github.com/curl/curl) for HTTP requests.
+
+---
+
+## Deployment
+
+This might be deployed as an isolated API as it is shown [here](https://rails-shortener.herokuapp.com/api/links/count) (this **exactly** route returns the current number of links for `base62` encoding). Along with a frontend like [this](https://vue-shortener.herokuapp.com/) ([git](https://github.com/cxsper/vue-shortener) for it) served with some http server. Just don't forget to respect the `CORS` as it is shown [here](https://github.com/cxsper/react-shortener/blob/api/config/application.rb#L40).
+
+On the other hand it could be deployed as a part of  monolithic system as it is shown [here](https://shorrtener.herokuapp.com/) ([react branch](https://github.com/cxsper/react-shortener/tree/react) of this repo) with a `Puma` for http serving.
 
 ---
 
