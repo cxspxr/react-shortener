@@ -34,5 +34,12 @@ module ReactRails
     config.generators.test_framework :rspec
     config.middleware.use Rack::Attack
     config.autoload_paths << Rails.root.join('app/validators')
+
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins '*'
+        resource '*', :headers => :any, :methods => [:get, :post, :options]
+      end
+    end
   end
 end

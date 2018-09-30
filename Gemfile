@@ -13,6 +13,9 @@ gem 'puma', '~> 3.11'
 # geolocation
 gem 'geocoder'
 
+# cross-origin requests
+gem 'rack-cors'
+
 # caching
 gem 'dalli'
 gem 'memcachier'
