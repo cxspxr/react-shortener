@@ -1,4 +1,6 @@
-# :zap: React URL Shortener :cyclone:
+# :zap: React URL Shortener with Rails API :cyclone:
+
+This is ***monolithic*** project structure as opposed to [this](https://github.com/cxsper/vue-shortener) where I am agnostic about the backend.
 
 What I'm gonna use:
 
