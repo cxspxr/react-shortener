@@ -20,6 +20,6 @@
     }
   },
   "devDependencies": {
-    "husky": "1.0.1"
+    "husky": "6.0.0"
   }
 }
