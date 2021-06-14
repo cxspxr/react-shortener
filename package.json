@@ -3,7 +3,7 @@
   "license": "MIT",
   "engines": {
     "node": "10.21.0",
-    "npm": "6.4.1"
+    "npm": "7.17.0"
   },
   "scripts": {
     "prod": "npm --prefix client run prod",
